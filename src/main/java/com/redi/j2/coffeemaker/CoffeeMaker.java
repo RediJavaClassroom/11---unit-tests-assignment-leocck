@@ -108,6 +108,8 @@ public class CoffeeMaker {
         Recipe recipe = catalog.getRecipe(recipeName);
         if (recipe == null) return false;
 
+        if (!hasEnoughIngredientsToMakeRecipe(recipeName)) return false;
+
         inventory.removeAmount(Ingredient.COFFEE, recipe.getAmountCoffee());
         inventory.removeAmount(Ingredient.MILK, recipe.getAmountMilk());
         inventory.removeAmount(Ingredient.CHOCOLATE, recipe.getAmountChocolate());
