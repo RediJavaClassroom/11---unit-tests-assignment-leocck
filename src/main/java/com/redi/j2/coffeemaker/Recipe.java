@@ -67,7 +67,7 @@ public class Recipe {
      * @throws InvalidRecipePriceException in case the parameter is a negative number
      */
     public void setPrice(BigDecimal price) throws InvalidRecipePriceException {
-        if (amountCoffee >= 0) {
+        if (price.compareTo(BigDecimal.ZERO) >= 0) {
             this.price = price;
         } else {
             throw new InvalidRecipePriceException();
@@ -109,7 +109,7 @@ public class Recipe {
      * @throws InvalidRecipeIngredientAmountException in case the parameter is a negative number
      */
     public void setAmountMilk(int amountMilk) throws InvalidRecipeIngredientAmountException {
-        if (amountCoffee >= 0) {
+        if (amountMilk >= 0) {
             this.amountMilk = amountMilk;
         } else {
             throw new InvalidRecipeIngredientAmountException("milk");
@@ -130,7 +130,7 @@ public class Recipe {
      * @throws InvalidRecipeIngredientAmountException in case the parameter is a negative number
      */
     public void setAmountChocolate(int amountChocolate) throws InvalidRecipeIngredientAmountException {
-        if (amountCoffee >= 0) {
+        if (amountChocolate >= 0) {
             this.amountChocolate = amountChocolate;
         } else {
             throw new InvalidRecipeIngredientAmountException("chocolate");
@@ -151,7 +151,7 @@ public class Recipe {
      * @throws InvalidRecipeIngredientAmountException in case the parameter is a negative number
      */
     public void setAmountSugar(int amountSugar) throws InvalidRecipeIngredientAmountException {
-        if (amountCoffee >= 0) {
+        if (amountSugar >= 0) {
             this.amountSugar = amountSugar;
         } else {
             throw new InvalidRecipeIngredientAmountException("sugar");
@@ -206,12 +206,7 @@ public class Recipe {
 
         Recipe recipe = (Recipe) o;
 
-        if (getAmountCoffee() != recipe.getAmountCoffee()) return false;
-        if (getAmountMilk() != recipe.getAmountMilk()) return false;
-        if (getAmountChocolate() != recipe.getAmountChocolate()) return false;
-        if (getAmountSugar() != recipe.getAmountSugar()) return false;
-        if (!getName().equals(recipe.getName())) return false;
-        return getPrice().equals(recipe.getPrice());
+        return getName().equals(recipe.getName());
     }
 
     /**
